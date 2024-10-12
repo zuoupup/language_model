@@ -14,7 +14,6 @@ This project implements a language model using a Transformer architecture. The m
 
 Before running the code, make sure to install the necessary Python libraries:
 
-```bash
 pip install torch scikit-learn matplotlib
 
 ## **1. Dataset Generation (`dataset.py`)**
@@ -40,7 +39,6 @@ The dataset is saved in a file named **`custom_dataset.txt`**.
 
 To generate the dataset, simply run:
 
-```bash
 python dataset.py
 
 ## **2. Model Architecture (`model.py`)**
@@ -71,7 +69,6 @@ This script trains the language model using the custom dataset generated in `dat
 
 To train the model:
 
-```bash
 python training.py
 
 ### **Generating Sentences**
