@@ -42,3 +42,71 @@ To generate the dataset, simply run:
 
 ```bash
 python dataset.py
+
+## **2. Model Architecture (`model.py`)**
+
+The model is implemented using a Transformer architecture, leveraging PyTorch's `nn.TransformerEncoder` module. It includes:
+
+- **Embedding Layer**: Encodes the input tokens into dense vectors.
+- **Positional Encoding**: Adds positional information to the embeddings, as the transformer does not inherently know the order of tokens.
+- **Transformer Encoder Layers**: Stacks multiple layers of self-attention and feedforward networks to capture relationships between words.
+- **Decoder**: Maps the output of the transformer layers to the vocabulary size for prediction.
+
+### **Positional Encoding**
+
+The positional encoding is implemented using sine and cosine functions, allowing the model to incorporate sequence information into the embeddings.
+
+## **3. Training the Model (`training.py`)**
+
+This script trains the language model using the custom dataset generated in `dataset.py`. It also includes validation and generates loss plots to visualize training progress.
+
+### **Training Details**
+
+- **DataLoader**: The dataset is split into training and validation sets (90% training, 10% validation).
+- **Training Loop**: The model is trained for 200 epochs with a learning rate scheduler that reduces the learning rate if the validation loss plateaus.
+- **Loss Function**: Cross-entropy loss is used, and padding tokens are ignored during computation.
+- **Optimization**: Adam optimizer is employed, with gradient clipping to prevent exploding gradients.
+
+### **Usage**
+
+To train the model:
+
+```bash
+python training.py
+
+### **Generating Sentences**
+
+The `generate_text` function in `training.py` can be used to generate sentences based on the trained model. It randomly selects a starting word (subject) and predicts the next words based on the learned patterns.
+
+### **Examples of Generated Sentences**
+
+After training, the model is capable of generating sentences like:
+
+- "The cat jumps over the fence."
+- "My father drives a car slowly."
+- "An engineer designs a bridge skillfully."
+
+These sentences are designed to be grammatically correct and logical, following the structures observed during training.
+
+## **Files Overview**
+
+- **`custom_dataset.txt`**: The generated dataset file containing 10,000 sentences.
+- **`dataset.py`**: Script for generating the dataset.
+- **`model.py`**: Script containing the Transformer-based model implementation.
+- **`training.py`**: Script for training the model, evaluating its performance, and generating sentences.
+
+## **Notes**
+
+- Ensure that CUDA is available if training on a GPU, as this will significantly speed up the process.
+- The model parameters (e.g., embedding size, number of layers) can be adjusted in `training.py` to experiment with different configurations.
+
+## **Future Improvements**
+
+- Incorporate more diverse sentence structures to expand the model's capabilities.
+- Implement a beam search for more coherent text generation during inference.
+- Fine-tune the model on larger, pre-existing text corpora for improved performance.
+
+## **License**
+
+This project is licensed under the MIT License - see the **`LICENSE`** file for details.
+
